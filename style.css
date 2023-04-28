@@ -1,0 +1,13 @@
+.scroll-container {
+    overflow-y: auto;
+    /* Дозволяє відображати вертикальний скролл */
+    height: 400px;
+    /* Задає висоту контейнера скроллу */
+    position: relative;
+    /* Встановлюємо позицію контейнера */
+}
+
+.scroll-content {
+    position: absolute;
+    /* Встановлюємо позицію контенту */
+}
