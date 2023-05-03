@@ -1,21 +1,22 @@
-const scrollContainer = document.querySelector('.scroll-container');
-const scrollContent = document.querySelector('.scroll-content');
+// JavaScript-код для скроллу
+      const scrollContainer = document.getElementById('scroll-container');
+      const scrollItems = document.getElementsByClassName('scroll-item');
 
-scrollContainer.addEventListener('scroll', () => {
-  const scrollTop = scrollContainer.scrollTop;
-  const visibleHeight = scrollContainer.offsetHeight;
-  const totalHeight = scrollContent.offsetHeight;
+      const containerHeight = scrollContainer.clientHeight;
+      const itemHeight = scrollItems[0].clientHeight;
 
-  /* Вираховуємо та відображаємо тільки необхідні дані */
-  const startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
-  const endIndex = Math.min(startIndex + visibleHeight / ITEM_HEIGHT + 1, totalHeight / ITEM_HEIGHT);
+      scrollContainer.addEventListener('scroll', function() {
+        const scrollTop = scrollContainer.scrollTop;
+        const visibleCount = Math.ceil(containerHeight / itemHeight);
 
-  for (let i = startIndex; i < endIndex; i++) {
-    /* Відображаємо тільки ті дані, які потрібні */
-    renderData(i);
-  }
-});
+        const startIndex = Math.floor(scrollTop / itemHeight);
+        const endIndex = startIndex + visibleCount;
 
-function renderData(index) {
-  /* Рендеримо дані для вказаного індексу */
-}
+        for (let i = 0; i < scrollItems.length; i++) {
+          if (i < startIndex || i >= endIndex) {
+            scrollItems[i].classList.add('hidden');
+          } else {
+            scrollItems[i].classList.remove('hidden');
+          }
+        }
+      });
